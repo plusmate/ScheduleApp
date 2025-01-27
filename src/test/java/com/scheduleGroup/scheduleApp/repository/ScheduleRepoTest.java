@@ -1,9 +1,8 @@
 package com.scheduleGroup.scheduleApp.repository;
 
-import com.scheduleGroup.scheduleApp.dto.SaveDto;
+import com.scheduleGroup.scheduleApp.lv1.dto.SaveDto;
+import com.scheduleGroup.scheduleApp.lv1.repository.ScheduleRepo;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class ScheduleRepoTest {
     private final ScheduleRepo repo;
