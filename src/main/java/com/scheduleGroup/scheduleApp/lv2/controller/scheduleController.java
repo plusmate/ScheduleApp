@@ -64,7 +64,14 @@ public class scheduleController {
     }
 
 
-    //    @PostMapping("/edit/{id}/{passwd}/{name}/{task}/")
+    /**
+     * 일정 수정 컨트롤러
+     * > name과 content는 null 가능
+     * @param id
+     * @param pw
+     * @param name
+     * @param content
+     */
     @PostMapping("/edit")
     public Map<String, Object> editSchedule(@RequestParam("id") Long id,
                                             @RequestParam("pw") String pw,
@@ -75,4 +82,14 @@ public class scheduleController {
         return ResponseEntity.ok(editResult).getBody();
     }
 
+    /**
+     * 단일 일정 삭제 컨트롤러
+     * @param id
+     * @param pw
+     */
+    @DeleteMapping("/delete")
+    public void deleteSchedule(@RequestParam("id") Long id,
+                               @RequestParam("pw") String pw) {
+        scheduleRepo.deleteSchedule(id, pw);
+    }
 }
