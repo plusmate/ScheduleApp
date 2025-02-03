@@ -72,6 +72,18 @@ public class ScheduleRepo {
         }
     }
 
+    public void deleteSchedule(Long id, String pw) {
+        String deleteSQL = "DELETE FROM schedule WHERE id = ? AND password = ?";
+
+        jdbcTemplate.update(deleteSQL, id, pw);
+    }
+
+    /**
+     * 비밀번호 검증 함수
+     * > 해당 id에 비밀번호가 일치 할 경우 true 반환
+     * @param id
+     * @param pw
+     */
     private boolean checkPw(Long id, String pw) {
         return !findByPw(id, pw).isEmpty();
     }
