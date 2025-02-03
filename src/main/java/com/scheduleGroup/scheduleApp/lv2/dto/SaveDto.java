@@ -1,7 +1,6 @@
-package com.scheduleGroup.scheduleApp.lv1.dto;
+package com.scheduleGroup.scheduleApp.lv2.dto;
 
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDate;
