@@ -72,10 +72,15 @@ public class ScheduleRepo {
         }
     }
 
-    public void deleteSchedule(Long id, String pw) {
-        String deleteSQL = "DELETE FROM schedule WHERE id = ? AND password = ?";
+    public String  deleteSchedule(Long id, String pw) {
+        String resultMsg = "";
+        if (checkPw(id, pw)) {
+            String deleteSQL = "DELETE FROM schedule WHERE id = ? AND password = ?";
+            jdbcTemplate.update(deleteSQL, id, pw);
+            resultMsg = id + "번 삭제 완료";
+        }
 
-        jdbcTemplate.update(deleteSQL, id, pw);
+        return resultMsg;
     }
 
     /**

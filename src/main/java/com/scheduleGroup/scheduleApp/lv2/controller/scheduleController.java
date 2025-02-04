@@ -88,8 +88,10 @@ public class scheduleController {
      * @param pw
      */
     @DeleteMapping("/delete")
-    public void deleteSchedule(@RequestParam("id") Long id,
+    public ResponseEntity<String> deleteSchedule(@RequestParam("id") Long id,
                                @RequestParam("pw") String pw) {
-        scheduleRepo.deleteSchedule(id, pw);
+        String resultMsg = scheduleRepo.deleteSchedule(id, pw);
+
+        return ResponseEntity.ok(resultMsg);
     }
 }
