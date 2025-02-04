@@ -1,6 +1,8 @@
 package com.scheduleGroup.scheduleApp.lv2.controller;
 
+import com.scheduleGroup.scheduleApp.lv2.dto.EditDto;
 import com.scheduleGroup.scheduleApp.lv2.dto.SaveDto;
+import com.scheduleGroup.scheduleApp.lv2.dto.SearchDto;
 import com.scheduleGroup.scheduleApp.lv2.repository.ScheduleRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -45,7 +47,8 @@ public class scheduleController {
     public List<Map<String, Object>> findByDate(@PathVariable("startDate") String startDate,
                                                 @PathVariable("endDate") String endDate,
                                                 @PathVariable("name") String name) {
-        List<Map<String, Object>> searchedSchedule = scheduleRepo.findByDate(startDate, endDate, name);
+        SearchDto searchDto = new SearchDto(name, startDate, endDate);
+        List<Map<String, Object>> searchedSchedule = scheduleRepo.findByDate(searchDto);
 
         return ResponseEntity.ok(searchedSchedule).getBody();
     }
@@ -77,7 +80,8 @@ public class scheduleController {
                                             @RequestParam("pw") String pw,
                                             @RequestParam(required = false, name = "name") String name,
                                             @RequestParam(required = false, name = "content") String content) {
-        Map<String, Object> editResult = scheduleRepo.edit(id, pw, name, content);
+        EditDto editDto = new EditDto(id, pw, name, content);
+        Map<String, Object> editResult = scheduleRepo.edit(editDto);
 
         return ResponseEntity.ok(editResult).getBody();
     }

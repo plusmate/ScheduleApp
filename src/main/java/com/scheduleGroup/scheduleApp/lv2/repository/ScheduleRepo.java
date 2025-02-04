@@ -1,6 +1,8 @@
 package com.scheduleGroup.scheduleApp.lv2.repository;
 
+import com.scheduleGroup.scheduleApp.lv2.dto.EditDto;
 import com.scheduleGroup.scheduleApp.lv2.dto.SaveDto;
+import com.scheduleGroup.scheduleApp.lv2.dto.SearchDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -27,11 +29,10 @@ public class ScheduleRepo {
         );
     }
 
-    public List<Map<String, Object>> findByDate(String startDate, String endDate, String name) {
+    public List<Map<String, Object>> findByDate(SearchDto searchDto) {
         String findByDateSQL = "SELECT * FROM schedule WHERE (updated_date BETWEEN ? AND ?) OR name = ?";
 
-
-        List<Map<String, Object>> searchList = jdbcTemplate.queryForList(findByDateSQL, startDate, endDate, name);
+        List<Map<String, Object>> searchList = jdbcTemplate.queryForList(findByDateSQL, searchDto.getStartDate(), searchDto.getEndDate(), searchDto.getName());
 
         return searchList;
     }
@@ -52,8 +53,12 @@ public class ScheduleRepo {
         return searchObj;
     }
 
-    public Map<String, Object> edit(Long id, String pw, String name, String content) {
-        if (checkPw(id, pw)) {
+    public Map<String, Object> edit(EditDto editDto) {
+        Long id = editDto.getId();
+        String name = editDto.getName();
+        String content = editDto.getContent();
+
+        if (checkPw(editDto.getId(), editDto.getPw())) {
             String editSQL;
             if (name != null && content == null) {
                 editSQL = "UPDATE schedule SET name = ?, updated_date = CURDATE() WHERE id = ?";
