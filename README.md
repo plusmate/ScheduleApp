@@ -1,6 +1,6 @@
 # 레벨별 구현
 - 최근 구현한 레벨 이전 레벨(Lv1)은 충돌을 피하기 위하여 압축파일로 첨부 (Lv1.zip)
-- com/scheduleGroup/scheduleApp/lv1.zip
+  - com/scheduleGroup/scheduleApp/lv1.zip
 
 # 구조
 - 컨트롤러 / 레포지토리 / dto / schema.sql
