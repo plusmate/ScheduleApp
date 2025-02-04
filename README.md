@@ -1,3 +1,12 @@
+# 레벨별 구현
+- 최근 구현한 레벨 이전 레벨(Lv1)은 충돌을 피하기 위하여 압축파일로 첨부 (Lv1.zip)
+
+# 구조
+- 컨트롤러 / 레포지토리 / dto / schema.sql
+- dto를 통한 데이터를 전달
+- src/main/resources/schema.sql 경로를 통해 테이블 생성 sql 삽입
+
+# API 명세
 | 기능 | Method | URL | response | 상태코드 |
 | :-: | :-: | :-: | :-: | :-: |
 | 일정 생성 | POST | http://localhost:8080/newSchedule?name={name}&password={password}&content={content}| 등록 완료 여부 | 200: 정상 조회 |
